@@ -1,5 +1,3 @@
-import ArticlesTable from "../../components/articles/table";
-import Form from "../../components/articles/form";
 import Link from "next/link";
 import CreateArticleForm from "../../components/articles/forms/create";
 import { useReducer } from "react";
