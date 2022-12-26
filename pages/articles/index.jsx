@@ -9,9 +9,7 @@ import DeleteConfirmation from "../../components/articles/delete-confirmation";
 
 const Articles = () => {
   const dispatch = useDispatch();
-  const articleIdToDelete = useSelector(
-    (state) => state.app.resources.deleteId
-  );
+  const articleIdToDelete = useSelector((state) => state.app.articles.deleteId);
 
   useEffect(() => {
     if (articleIdToDelete) {

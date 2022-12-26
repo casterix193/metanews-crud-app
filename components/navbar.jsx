@@ -1,6 +1,19 @@
 import Link from "next/link";
+import { client } from "../lib/helpers/api";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    client.defaults.headers["Authorization"] = "";
+    axios.defaults.headers["Authorization"] = "";
+
+    router.push("/login");
+  };
+
   return (
     <nav className="border-gray-200 px-2 sm:px-4 md:px-10 lg:px-20 py-2 rounded dark:bg-gray-900">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
@@ -43,6 +56,14 @@ const Navbar = () => {
             </li>
             <li>
               <Link href="/resources">Resources</Link>
+            </li>
+            <li>
+              <span
+                className="cursor-pointer text-gray-400 hover:text-gray-300"
+                onClick={handleLogout}
+              >
+                Logout
+              </span>
             </li>
           </ul>
         </div>

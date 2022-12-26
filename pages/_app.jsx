@@ -16,17 +16,14 @@ const queryClient = new QueryClient({
 });
 
 function MyApp({ Component, pageProps }) {
+  const getLayout =
+    Component.getLayout || ((page) => <AuthLayout>{page}</AuthLayout>);
+
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
         <Toaster />
-        {Component.name === "Login" ? (
-          <Component {...pageProps} />
-        ) : (
-          <AuthLayout>
-            <Component {...pageProps} />
-          </AuthLayout>
-        )}
+        <>{getLayout(<Component {...pageProps} />)}</>
       </Provider>
     </QueryClientProvider>
   );
